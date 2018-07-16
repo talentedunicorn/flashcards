@@ -1,16 +1,28 @@
 <style>
   :root {
     --space: 1.25rem;
+    --half-space: calc(var(--space) / 2);
+    --radius: 3px;
+    --black: hsl(0, 0%, 26%);
+    --white: hsl(0, 0%, 96%);
+    --gray: hsl(0, 0%, 80%);
   }
 
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+  }
+
+  html,
+  body,
   #app {
     min-height: 100%;
-  }
-
-  @supports (min-height: 100vh) {
-    #app {
-      min-height: 100vh;
-    }
   }
 
   header {
@@ -26,8 +38,18 @@
     padding: 0;
     margin: 0;
     display: grid;
-    background: orange;
+    background: var(--gray);
     justify-content: center;
+  }
+
+  button {
+    background: var(--black);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius);
+    padding: var(--half-space) var(--space);
+    margin: var(--space) auto;
+    display: block;
   }
 
   .slide-enter, .slide-leave-to {
