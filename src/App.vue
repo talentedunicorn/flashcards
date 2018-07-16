@@ -2,6 +2,7 @@
   :root {
     --space: 1.25rem;
     --half-space: calc(var(--space) / 2);
+    --section-height: 40vh;
     --radius: 3px;
     --black: hsl(0, 0%, 26%);
     --white: hsl(0, 0%, 96%);
@@ -40,6 +41,8 @@
     display: grid;
     background: var(--gray);
     justify-content: center;
+    align-items: center;
+    min-height: var(--section-height);
   }
 
   button {
@@ -52,13 +55,13 @@
     display: block;
   }
 
-  .slide-enter, .slide-leave-to {
+  .fade-enter, .fade-leave-to {
     opacity: 0;
   }
 
-  .slide-enter-active,
-  .slide-leave-active {
-    transition: all ease-in-out 1s;
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 5s ease-out;
   }
 </style>
 
@@ -69,7 +72,7 @@
     </header>
 
     <main>
-      <transition-group name="slide" tag="ul">
+      <transition-group name="fade" tag="ul">
         <li v-for="(card, index) in cards" :key="index" v-show="current === index">
           <Card :title="card.title" :image="card.image" />
         </li>

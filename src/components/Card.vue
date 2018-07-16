@@ -1,10 +1,12 @@
 <style scoped>
   article {
-    background: var(--white);
+    background: var(--gray);
     display: grid;
+    justify-content: center;
   }
 
   h2 {
+    background: var(--white);
     margin: 0;
     padding: var(--space);
   }
