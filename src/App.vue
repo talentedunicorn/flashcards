@@ -42,7 +42,18 @@
     background: var(--gray);
     justify-content: center;
     align-items: center;
-    min-height: var(--section-height);
+  }
+
+  li {
+    z-index: 0;
+    visibility: hidden;
+    grid-area: 1 / 1 / 2 / 2;
+  }
+
+  .visible {
+    z-index: 1;
+    visibility: visible;
+    animation: slide-in 1s ease-out;
   }
 
   button {
@@ -55,13 +66,15 @@
     display: block;
   }
 
-  .fade-enter, .fade-leave-to {
-    opacity: 0;
-  }
-
-  .fade-enter-active,
-  .fade-leave-active {
-    transition: opacity 5s ease-out;
+  @keyframes slide-in {
+    from {
+      opacity: 0;
+      transform: translateX(100%);
+    },
+    to {
+      opacity: 1;
+      transform: none;
+    }
   }
 </style>
 
@@ -73,7 +86,7 @@
 
     <main>
       <transition-group name="fade" tag="ul">
-        <li v-for="(card, index) in cards" :key="index" v-show="current === index">
+        <li v-for="(card, index) in cards" :key="index" :class="{ visible: isCurrent(index) }">
           <Card :title="card.title" :image="card.image" />
         </li>
       </transition-group>
@@ -110,7 +123,9 @@ export default {
       } else {
         this.current = 0
       }
-
+    },
+    isCurrent(index) {
+      return index === this.current
     }
   }
 }
